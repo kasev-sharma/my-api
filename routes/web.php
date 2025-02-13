@@ -14,3 +14,7 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register')->middleware('guest');
+
+Route::get('/form', function () {
+    return view('site.form');
+})->name('register')->middleware('guest');

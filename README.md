@@ -1,7 +1,6 @@
 ## Passport Install CMD
 
 ```
-php artisan passport:install;
 php artisan passport:client --personal;
 ```
 
