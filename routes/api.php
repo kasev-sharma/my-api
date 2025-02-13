@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoiceToTextController;
 
-Route::prefix('speech-to-text')->group(function () {
+Route::prefix('company')->group(function () {
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/transcribe', [VoiceToTextController::class, 'transcribe']);
