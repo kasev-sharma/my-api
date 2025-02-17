@@ -35,3 +35,12 @@ php artisan cache:clear; php artisan config:clear;
 php artisan view:clear;
 php artisan route:clear;
 ```
+
+## Change in php.ini
+```
+upload_max_filesize = 100M
+post_max_size = 100M
+
+max_execution_time = 300   ; Allow longer execution time (300 seconds = 5 minutes)
+memory_limit = 256M        ; Increase memory limit to handle large data
+```

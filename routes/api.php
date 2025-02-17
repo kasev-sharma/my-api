@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\LookupController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\SiteFormController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoiceToTextController;
 
 Route::prefix('company')->group(function () {
     Route::get('/lookups', [LookupController::class, 'getLookupData']);
+    Route::post('/add-form-data', [SiteFormController::class, 'addFormData']);
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/transcribe', [VoiceToTextController::class, 'transcribe']);

@@ -34,28 +34,28 @@ class LookupSeeder extends Seeder
             [
                 'lookup_type' => 'BATTERY_BANK',
                 'lookup_code' => 'BANK1',
-                'lookup_value' => 'Battery Bank 1',
+                'lookup_value' => '12',
                 'sequence' => 1,
                 'is_deleted' => 0
             ],
             [
                 'lookup_type' => 'BATTERY_BANK',
                 'lookup_code' => 'BANK2',
-                'lookup_value' => 'Battery Bank 2',
+                'lookup_value' => '33',
                 'sequence' => 2,
                 'is_deleted' => 0
             ],
             [
                 'lookup_type' => 'BATTERY_CAPACITY',
                 'lookup_code' => 'CAP1',
-                'lookup_value' => '100Ah',
+                'lookup_value' => '100',
                 'sequence' => 1,
                 'is_deleted' => 0
             ],
             [
                 'lookup_type' => 'BATTERY_CAPACITY',
                 'lookup_code' => 'CAP2',
-                'lookup_value' => '200Ah',
+                'lookup_value' => '200',
                 'sequence' => 2,
                 'is_deleted' => 0
             ],

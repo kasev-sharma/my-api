@@ -13,7 +13,7 @@ enum UserEnum: string
     const ACCOUNT_ALREADY_EXIST = 'Account already exists.';
     const SUCCESS = 'Success';
     const LOGOUT_SUCCESS = "Logout Success";
-  
+    const FAILED  = 'Failed';
     const PATIENT_ID_REQUIRED = "Patient ID is required";
     const USER_CREATED_SUCCESSFULLY = "User created successfully";
 
