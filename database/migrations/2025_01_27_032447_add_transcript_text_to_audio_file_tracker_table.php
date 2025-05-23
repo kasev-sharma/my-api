@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('audio_file_tracker', function (Blueprint $table) {
-            //
-             $table->text('transcript_text')->nullable(); // Adding the transcript_text column
-        });
+        // Schema::table('audio_file_tracker', function (Blueprint $table) {
+        //     //
+        //      $table->text('transcript_text')->nullable(); // Adding the transcript_text column
+        // });
     }
 
     /**

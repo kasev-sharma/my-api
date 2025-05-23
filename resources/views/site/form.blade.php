@@ -20,106 +20,139 @@
 
         <form id="siteForm" enctype="multipart/form-data">
             @csrf
-            <div class="space-y-4">
-                <!-- Site Name -->
-                <div>
-                    <label for="site_name" class="block text-sm font-medium text-gray-700">Site Name</label>
-                    <select id="site_name" name="site_name" class="w-full px-4 py-2 border rounded-md">
-                        <option value="">Select Site</option>
-                    </select>
-                </div>
+            <div class="space-y-6">
+                <!-- Site Information -->
+                <fieldset class="border p-4 rounded-md">
+                    <legend class="text-lg font-semibold">Site Information</legend>
+                    <div>
+                        <label for="customer_name" class="block text-sm font-medium text-gray-700">Customer</label>
+                        <input type="text" id="customer_name" name="customer_name" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="site_address" class="block text-sm font-medium text-gray-700">Site Address</label>
+                        <input type="text" id="site_address" name="site_address" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                </fieldset>
 
-                <!-- UPS Rating -->
-                <div>
-                    <label for="ups_rating" class="block text-sm font-medium text-gray-700">UPS Rating</label>
-                    <input type="number" id="ups_rating" name="ups_rating" class="w-full px-4 py-2 border rounded-md">
-                </div>
+                <fieldset class="border p-4 rounded-md">
+                    <legend class="text-lg font-semibold">Customer Details</legend>
+                    <div>
+                        <label for="customer_name" class="block text-sm font-medium text-gray-700">Customer Name</label>
+                        <input type="text" id="customer_name" name="customer_name" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="customer_mobile" class="block text-sm font-medium text-gray-700">Customer Mobile</label>
+                        <input type="text" id="customer_mobile" name="customer_mobile" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="customer_name" class="block text-sm font-medium text-gray-700">Customer Name</label>
+                        <input type="text" id="customer_name" name="customer_name" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="customer_mobile" class="block text-sm font-medium text-gray-700">Customer Mobile</label>
+                        <input type="text" id="customer_mobile" name="customer_mobile" class="w-full px-4 py-2 border rounded-md">
+                    </div>
 
-                <!-- Battery Bank -->
-                <div>
-                    <label for="battery_bank" class="block text-sm font-medium text-gray-700">Battery Bank</label>
-                    <select id="battery_bank" name="battery_bank" class="w-full px-4 py-2 border rounded-md">
-                        <option value="">Select Battery Bank</option>
-                    </select>
-                </div>
+                </fieldset>
 
-                <!-- Battery Capacity -->
-                <div>
-                    <label for="battery_capacity" class="block text-sm font-medium text-gray-700">Battery Capacity</label>
-                    <select id="battery_capacity" name="battery_capacity" class="w-full px-4 py-2 border rounded-md">
-                        <option value="">Select Battery Capacity</option>
-                    </select>
-                </div>
+                <!-- UPS Section -->
+                <fieldset class="border p-4 rounded-md">
+                    <legend class="text-lg font-semibold">UPS Details</legend>
+                    <div>
+                        <label for="ups_make" class="block text-sm font-medium text-gray-700">UPS Make</label>
+                        <input type="text" id="ups_make" name="ups_make" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="ups_model" class="block text-sm font-medium text-gray-700">UPS Model</label>
+                        <input type="text" id="ups_model" name="ups_model" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="ups_rating" class="block text-sm font-medium text-gray-700">UPS Rating</label>
+                        <input type="number" id="ups_rating" name="ups_rating" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="no_of_ups" class="block text-sm font-medium text-gray-700">No of UPS</label>
+                        <input type="number" id="no_of_ups" name="no_of_ups" class="w-full px-4 py-2 border rounded-md">
+                    </div>
 
-                <!-- PG Gland -->
-                <div>
-                    <label for="pg_gland" class="block text-sm font-medium text-gray-700">PG Gland</label>
-                    <input type="number" id="pg_gland" name="pg_gland" class="w-full px-4 py-2 border rounded-md">
-                </div>
+                </fieldset>
 
-                <!-- Thumbal -->
-                <div>
-                    <label for="thumbal" class="block text-sm font-medium text-gray-700">Thumbal</label>
-                    <input type="number" id="thumbal" name="thumbal" class="w-full px-4 py-2 border rounded-md">
-                </div>
+                <!-- Battery Section -->
+                <fieldset class="border p-4 rounded-md">
+                    <legend class="text-lg font-semibold">Battery Details</legend>
+                    <div>
+                        <label for="battery_bank" class="block text-sm font-medium text-gray-700">Battery Make</label>
+                        <input type="text" id="battery_bank" name="battery_bank" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="battery_ah" class="block text-sm font-medium text-gray-700">Battery Ah</label>
+                        <input type="text" id="battery_ah" name="battery_ah" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="battery_volt" class="block text-sm font-medium text-gray-700">Battery Volt</label>
+                        <input type="text" id="battery_volt" name="battery_volt" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="battery_type" class="block text-sm font-medium text-gray-700">Battery Type</label>
+                        <input type="text" id="battery_type" name="battery_type" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="no_of_bank" class="block text-sm font-medium text-gray-700">No of Banks</label>
+                        <input type="number" id="no_of_bank" name="no_of_bank" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="no_of_battery" class="block text-sm font-medium text-gray-700">No of Battery</label>
+                        <input type="number" id="no_of_battery" name="no_of_battery" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                </fieldset>
 
-                <!-- Nut Bolts -->
-                <div>
-                    <label for="nut_bolts" class="block text-sm font-medium text-gray-700">Nut Bolts</label>
-                    <input type="number" id="nut_bolts" name="nut_bolts" class="w-full px-4 py-2 border rounded-md">
-                </div>
+                <!-- Miscellaneous Section -->
+                <fieldset class="border p-4 rounded-md">
+                    <legend class="text-lg font-semibold">Miscellaneous</legend>
+                    <div>
+                        <label for="control_cable_in_meters" class="block text-sm font-medium text-gray-700">Control Cable in Meters</label>
+                        <input type="number" id="control_cable_in_meters" name="control_cable_in_meters" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="pg_gland" class="block text-sm font-medium text-gray-700">PG Gland</label>
+                        <input type="number" id="pg_gland" name="pg_gland" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="thumbal" class="block text-sm font-medium text-gray-700">Thumbal</label>
+                        <input type="number" id="thumbal" name="thumbal" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                    <div>
+                        <label for="nut_bolts" class="block text-sm font-medium text-gray-700">Nut Bolts</label>
+                        <input type="number" id="nut_bolts" name="nut_bolts" class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                </fieldset>
 
-                <!-- Farsher Quality -->
-                <div>
-                    <label for="farsher_quality" class="block text-sm font-medium text-gray-700">Farsher Quality</label>
-                    <input type="number" id="farsher_quality" name="farsher_quality" class="w-full px-4 py-2 border rounded-md">
-                </div>
+                <!-- Images Upload -->
+                <fieldset class="border p-4 rounded-md">
+                    <legend class="text-lg font-semibold">Image Upload</legend>
+                    <div>
+                        <label for="images" class="block text-sm font-medium text-gray-700">Images (Optional)</label>
+                        <input type="file" id="images" name="images[]" multiple class="w-full px-4 py-2 border rounded-md">
+                    </div>
+                </fieldset>
 
-                <!-- Battery to Braker Cable -->
-                <div>
-                    <label for="battery_to_braker_cable" class="block text-sm font-medium text-gray-700">Battery to Braker Cable</label>
-                    <input type="number" id="battery_to_braker_cable" name="battery_to_braker_cable" class="w-full px-4 py-2 border rounded-md">
-                </div>
-
-                <!-- Braker to UPS -->
-                <div>
-                    <label for="braker_to_ups" class="block text-sm font-medium text-gray-700">Braker to UPS</label>
-                    <input type="number" id="braker_to_ups" name="braker_to_ups" class="w-full px-4 py-2 border rounded-md">
-                </div>
-
-                <!-- Control Cable -->
-                <div>
-                    <label for="control_cable" class="block text-sm font-medium text-gray-700">Control Cable</label>
-                    <input type="number" id="control_cable" name="control_cable" class="w-full px-4 py-2 border rounded-md">
-                </div>
-
-                <!-- UPS to Pannel Cable -->
-                <div>
-                    <label for="ups_to_pannel_cable" class="block text-sm font-medium text-gray-700">UPS to Pannel Cable</label>
-                    <input type="number" id="ups_to_pannel_cable" name="ups_to_pannel_cable" class="w-full px-4 py-2 border rounded-md">
-                </div>
-
-                <!-- Images (Multiple) -->
-                <div>
-                    <label for="images" class="block text-sm font-medium text-gray-700">Images (Optional)</label>
-                    <input type="file" id="images" name="images[]" multiple class="w-full px-4 py-2 border rounded-md">
-                </div>
-
+                <!-- Submit Button -->
                 <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700">Submit</button>
             </div>
         </form>
+
     </div>
 </div>
 
 <script>
     const API_BASE_URL = @json(env('API_BASE_URL'));
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         fetchLookups();
     });
 
     function fetchLookups() {
-        fetch(`${API_BASE_URL}/company/lookups`)
+        fetch(`${API_BASE_URL}/api/company/lookups`)
             .then(response => response.json())
             .then(data => {
                 populateDropdown('SITE_NAME', data.data.SITE_NAME, '#site_name');
@@ -146,24 +179,24 @@
 
         let formData = new FormData(this);
 
-        fetch(`${API_BASE_URL}/company/add-form-data`, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success!= true) {
-                // Show error card if validation fails
-                displayErrors(data.message);
-            } else {
-                alert('Form submitted successfully!');
-                // You can redirect or reset the form as needed
-            }
-        })
-        .catch(error => {
-            alert('Something went wrong!');
-            console.error(error);
-        });
+        fetch(`${API_BASE_URL}/api/company/add-form-data`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success != true) {
+                    // Show error card if validation fails
+                    displayErrors(data.message);
+                } else {
+                    alert('Form submitted successfully!');
+                    // You can redirect or reset the form as needed
+                }
+            })
+            .catch(error => {
+                alert('Something went wrong!');
+                console.error(error);
+            });
     });
 
     function displayErrors(errorMessage) {

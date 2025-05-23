@@ -13,23 +13,20 @@ class SiteForm extends Model
     // Define the table name (optional, Laravel will infer it by default)
     protected $table = 'site_forms';
 
-    // Define the fillable attributes
     protected $fillable = [
-        'site_name',
-        'ups_rating',
-        'battery_bank',
-        'battery_capacity',
-        'pg_gland',
-        'thumbal',
-        'nut_bolts',
-        'farsher_quality',
-        'battery_to_braker_cable',
-        'braker_to_ups',
-        'control_cable',
-        'ups_to_pannel_cable',
-        'images'
+        'user_id', 'customer_name', 'customer_mobile', 'site_address',
+        'ups_make', 'ups_model', 'ups_rating', 'no_of_ups',
+        'battery_bank', 'battery_ah', 'battery_volt', 'battery_type',
+        'no_of_bank', 'no_of_battery', 'control_cable_in_meters',
+        'pg_gland', 'thumbal', 'nut_bolts', 'images'
     ];
 
-    // If you're using soft deletes, define the `deleted_at` column
-    protected $dates = ['deleted_at'];
+    protected $casts = [
+        'images' => 'array'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patients', function (Blueprint $table) {
-            $table->id();
-            $table->string('first_name',50)->nullable(false);
-            $table->string('last_name',50)->nullable(false);
-            $table->string('address',100)->nullable(false);
-            $table->string('phone')->nullable(false);
-            $table->enum('gender', ['male','female']);
-            $table->integer('age');
-            $table->timestamps();
-        });
+        // Schema::create('patients', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('first_name',50)->nullable(false);
+        //     $table->string('last_name',50)->nullable(false);
+        //     $table->string('address',100)->nullable(false);
+        //     $table->string('phone')->nullable(false);
+        //     $table->enum('gender', ['male','female']);
+        //     $table->integer('age');
+        //     $table->timestamps();
+        // });
     }
 
     /**

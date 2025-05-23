@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patients_consultation_data', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('patient_id');
-            $table->string('doctor_name');
-            $table->json('data');
-            $table->timestamps();
-            $table->foreign('patient_id')->references('id') ->on('patients')->onDelete('cascade');
-        });
+        // Schema::create('patients_consultation_data', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('patient_id');
+        //     $table->string('doctor_name');
+        //     $table->json('data');
+        //     $table->timestamps();
+        //     $table->foreign('patient_id')->references('id') ->on('patients')->onDelete('cascade');
+        // });
     }
 
     /**

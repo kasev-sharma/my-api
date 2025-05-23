@@ -7,6 +7,8 @@ use App\Models\SiteForm;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
 
 class SiteFormController extends Controller
 {
@@ -59,60 +61,145 @@ class SiteFormController extends Controller
      */
     public function addFormData(Request $request)
     {
-        // Validate request (all fields are now optional)
         $validator = Validator::make($request->all(), [
-            'site_name' => 'nullable|required|string|max:255',
-            'ups_rating' => 'nullable|required|integer',
-            'battery_bank' => 'nullable',
-            'battery_capacity' => 'nullable|integer',
-            'pg_gland' => 'nullable|integer',
-            'thumbal' => 'nullable|integer',
-            'nut_bolts' => 'nullable|integer',
-            'farsher_quality' => 'nullable|integer',
-            'battery_to_braker_cable' => 'nullable|integer', 
-            'braker_to_ups' => 'nullable|integer',
-            'control_cable' => 'nullable|integer',
-            'ups_to_pannel_cable' => 'nullable|integer',
-            'images' => 'nullable|array', // Images can be optional
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate image formats
+            // 'user_id' => 'required|exists:users,id',
+            'customer_name' => 'required|string',
+            'customer_mobile' => 'required|string',
+            'site_address' => 'required|string',
+            'ups_make' => 'required|string',
+            'ups_model' => 'required|string',
+            'ups_rating' => 'required|integer',
+            'no_of_ups' => 'required|integer',
+            'battery_bank' => 'required|string',
+            'battery_ah' => 'required|string',
+            'battery_volt' => 'required|string',
+            'battery_type' => 'required|string',
+            'no_of_bank' => 'required|integer',
+            'no_of_battery' => 'required|integer',
+            'control_cable_in_meters' => 'required|integer',
+            'pg_gland' => 'required|integer',
+            'thumbal' => 'required|integer',
+            'nut_bolts' => 'required|integer',
+            'images.*' => 'nullable|image|max:2048'
         ]);
 
         if ($validator->fails()) {
             return $this->errorResponse($validator->errors());
         }
 
-        // Handle image uploads
+        // Handle Image Uploads
         $imagePaths = [];
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                // Store each image in the public folder and get the file path
-                $imagePath = $image->store('uploads', 'public'); // 'uploads' is the directory under 'public/storage'
-                $imagePaths[] = $imagePath; // Store the relative path to the image
+                $path = $image->store('uploads', 'public');
+                $imagePaths[] = $path;
             }
         }
-
-        // Create new SiteForm entry with image paths
-
-        try{
-            $siteForm = SiteForm::create([
-                'site_name' => $request->site_name,
-                'ups_rating' => (int)$request->ups_rating,
-                'battery_bank' => (int)$request->battery_bank,
-                'battery_capacity' => (int)$request->battery_capacity,
-                'pg_gland' => (int)$request->pg_gland,
-                'thumbal' => (int)$request->thumbal,
-                'nut_bolts' => (int)$request->nut_bolts,
-                'farsher_quality' => (int)$request->farsher_quality,
-                'battery_to_braker_cable' => (int)$request->battery_to_braker_cable,
-                'braker_to_ups' => (int)$request->braker_to_ups,
-                'control_cable' => (int)$request->control_cable,
-                'ups_to_pannel_cable' => (int)$request->ups_to_pannel_cable,
-                'images' => json_encode($imagePaths), // Store image paths as a JSON array
+        try {
+            $siteDetail = SiteForm::create([
+                'user_id' => 1,
+                'customer_name' => $request->customer_name,
+                'customer_mobile' => $request->customer_mobile,
+                'site_address' => $request->site_address,
+                'ups_make' => $request->ups_make,
+                'ups_model' => $request->ups_model,
+                'ups_rating' => $request->ups_rating,
+                'no_of_ups' => $request->no_of_ups,
+                'battery_bank' => $request->battery_bank,
+                'battery_ah' => $request->battery_ah,
+                'battery_volt' => $request->battery_volt,
+                'battery_type' => $request->battery_type,
+                'no_of_bank' => $request->no_of_bank,
+                'no_of_battery' => $request->no_of_battery,
+                'control_cable_in_meters' => $request->control_cable_in_meters,
+                'pg_gland' => $request->pg_gland,
+                'thumbal' => $request->thumbal,
+                'nut_bolts' => $request->nut_bolts,
+                'images' => $imagePaths
             ]);
-    
+
             return $this->successResponse(UserEnum::SUCCESS);
-        }catch(Exception $e){
-            $this->errorResponse($e->getMessage())  ;
+        } catch (Exception $e) {
+            $this->errorResponse($e->getMessage());
         }
+    }
+
+
+    public function getMetaDataInformation(Request $request)
+    {
+       
+        $type1=$request['type1'];
+        $type2=$request['type2'];
+       
+          $locations = json_decode(Storage::get('locations.json'), true);
+          $metadata = json_decode(Storage::get('metadata.json'), true);
+  
+          // Merge data based on 'id'
+          $mergedData = [];
+          foreach ($locations as $loc) {
+              foreach ($metadata as $meta) {
+                  if ($loc['id'] === $meta['id']) {
+                      $mergedData[] = array_merge($loc, $meta);
+                      break;
+                  }
+              }
+          }
+  
+          // Count valid points per type
+          $typeCount = [];
+          $ratings = [];
+          $maxReviews = ["reviews" => 0, "location" => null];
+          $incompleteData = [];
+
+
+  
+          foreach ($mergedData as $data) {
+              // Count types
+              $typeCount[$data['type']] = ($typeCount[$data['type']] ?? 0) + 1;
+              
+              // Calculate rating averages
+              $ratings[$data['type']][] = $data['rating'];
+  
+              // Find highest reviews
+              if ($data['reviews'] > $maxReviews['reviews']) {
+                  $maxReviews = ["reviews" => $data['reviews'], "location" => $data];
+              }
+  
+              // Identify incomplete data
+              if (!isset($data['type'], $data['rating'], $data['reviews'])) {
+                  $incompleteData[] = $data;
+              }
+          }
+  
+          // Calculate average ratings
+          $averageRatings = [];
+          foreach ($ratings as $type => $ratingList) {
+              $averageRatings[$type] = array_sum($ratingList) / count($ratingList);
+
+
+          }
+          $avg=0;
+          foreach ($averageRatings as $type => $ratingList) {
+
+
+            if($type=$type1)
+            {
+                $avg+=$ratingList;
+            }
+            if($type=$type2)
+            {
+                $avg+=$ratingList;
+            }
+            
+
+
+        }
+  
+         return $this->successResponseWithData($avg);
+        // Output results
+        //   $this->info("Valid Points per Type: " . json_encode($typeCount, JSON_PRETTY_PRINT));
+        //   $this->info("Average Ratings per Type: " . json_encode($averageRatings, JSON_PRETTY_PRINT));
+        //   $this->info("Location with Highest Reviews: " . json_encode($maxReviews, JSON_PRETTY_PRINT));
+        //   $this->info("Incomplete Data Entries: " . json_encode($incompleteData, JSON_PRETTY_PRINT));
     }
 }
